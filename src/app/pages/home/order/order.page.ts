@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CommonService} from '../../../shared/common/common.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
     selector: 'order-page',
@@ -12,7 +13,7 @@ import {CommonService} from '../../../shared/common/common.service';
 })
 
 export class OrderPage {
-    constructor(public modalController: ModalController) {
+    constructor(public modalController: ModalController, private barcodeScanner: BarcodeScanner, private commonService: CommonService) {
     }
 
     async presentCodeModal() {
@@ -22,12 +23,18 @@ export class OrderPage {
         return await modal.present();
     }
 
+    scanner() {
+        this.barcodeScanner.scan().then(barcodeData => {
+            alert('Barcode data' + barcodeData.text);
+        }).catch(err => {
+            this.commonService.showMessage('لطفا مجددا تلاش کنید', 'error-msg');
+        });
+    }
+
     getUsername() {
         const user = JSON.parse(localStorage.getItem('user'));
         return user.username;
     }
-
-
 }
 
 @Component({
@@ -42,7 +49,8 @@ export class CodeModalPage implements OnInit {
                 private http: HttpClient,
                 private formBuilder: FormBuilder,
                 private router: Router,
-                private commonService: CommonService) {
+                private commonService: CommonService,
+                ) {
     }
 
     formGroup: FormGroup;
@@ -53,7 +61,6 @@ export class CodeModalPage implements OnInit {
             code: new FormControl('')
         });
     }
-
 
     dismissModal() {
         this.modalCntr.dismiss();
