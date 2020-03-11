@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {OrderPage} from './order.page';
+import {CodeModalPage, OrderPage} from './order.page';
 import {OrderRoutingModule} from './order-routing.module';
 import {IonicModule} from '@ionic/angular';
 
@@ -8,10 +8,14 @@ import {IonicModule} from '@ionic/angular';
     imports: [
         CommonModule,
         OrderRoutingModule,
-        IonicModule
+        IonicModule,
     ],
     declarations: [
-        OrderPage
+        OrderPage,
+        CodeModalPage
+    ],
+    entryComponents: [
+        CodeModalPage
     ]
 })
 
