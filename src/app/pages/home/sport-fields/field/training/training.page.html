@@ -1,0 +1,54 @@
+<ion-content fullscreen>
+    <div class="top-left-img"></div>
+    <div class="w-100 h-100 ">
+        <ion-grid class="ion-padding">
+            <ion-row>
+                <div class="back-btn">
+                    <ion-icon>back</ion-icon>
+                </div>
+                <div class="ml-2 mt-1 title">
+                    محتــوای آمــوزشی
+                </div>
+            </ion-row>
+
+            <div class="d-flex flex-row flex-wrap w-100">
+                <div class="w-100 training-box"
+                     (click)="routeTo(item.link)"
+                     *ngFor="let item of training"
+                     [ngStyle]="{'background': 'url(' + item.image + ') center left no-repeat'}"
+                     [ngClass]="item.class">
+                    <div class="parent w-100 h-100"
+                         [ngStyle]="{'background-image': item.gradient}">
+                    </div>
+                    <div class="child  d-flex flex-row justify-content-between w-100 h-100">
+                        <div class="text w-50 pt-5 px-3">
+                            {{item.text}}
+                        </div>
+                        <div class="play-btn mt-5 w-50">
+                            <img class="ml-5 pl-1"
+                                 src="../../../../../../assets/image/Group%20718.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ion-grid>
+    </div>
+</ion-content>
+
+<ion-tab-bar slot="bottom">
+    <ion-tab-button tab="music">
+        <img src="../../../../../../assets/image/avatar%20(1).png"
+             routerLink="/home/profile"
+             width="21"/>
+    </ion-tab-button>
+    <ion-tab-button tab="music">
+        <img src="../../../../../../assets/image/calendar.png" width="23"/>
+    </ion-tab-button>
+    <ion-tab-button tab="movies">
+        <img src="../../../../../../assets/image/Group%20800.png" width="28"/>
+    </ion-tab-button>
+    <ion-tab-button tab="games">
+        <img src="../../../../../../assets/image/Group%20946.png" width="22"/>
+    </ion-tab-button>
+</ion-tab-bar>

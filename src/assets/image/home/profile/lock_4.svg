@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12.053" height="16.071" viewBox="0 0 12.053 16.071">
+    <defs>
+        <style>
+            .cls-1{fill:#36cc45}
+        </style>
+    </defs>
+    <g id="lock_4_" data-name="lock (4)" transform="translate(-64)">
+        <g id="Group_929" data-name="Group 929" transform="translate(64)">
+            <path id="Path_3835" d="M75.718 6.026h-1V4.687a4.687 4.687 0 0 0-9.374 0v1.339h-1a.335.335 0 0 0-.344.335v8.37a1.341 1.341 0 0 0 1.339 1.339h9.375a1.341 1.341 0 0 0 1.339-1.339v-8.37a.335.335 0 0 0-.335-.335zm-4.689 6.994a.335.335 0 0 1-.333.372h-1.339a.335.335 0 0 1-.333-.372l.211-1.9a1.325 1.325 0 0 1-.548-1.077 1.339 1.339 0 1 1 2.678 0 1.325 1.325 0 0 1-.548 1.077zM72.7 6.026h-5.352V4.687a2.678 2.678 0 1 1 5.357 0z" class="cls-1" data-name="Path 3835" transform="translate(-64)"/>
+        </g>
+    </g>
+</svg>

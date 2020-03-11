@@ -1,0 +1,38 @@
+<ion-content fullscreen>
+    <div class="top-left-img"></div>
+    <div class="bottom-right-img"></div>
+    <div class="w-100 h-100">
+        <ion-grid class="ion-padding">
+            <ion-row>
+                <div class="back-btn"></div>
+                <div class="ml-3 mt-2 title">
+                    ثبت نام
+                </div>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="d-flex flex-column justify-content-center align-items-center  input-box">
+            <ion-row class="px-2 sign_up_input" *ngFor="let input of inputs">
+                <div class="d-flex justify-content-start custom-input py-1 mt-3">
+                    <img [src]="input.icon"
+                         class="mx-1">
+                    <input class="pl-2"
+                           [placeholder]="input.placeholder">
+                </div>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid class="pt-5 justify-content-center sign_up_btn">
+            <ion-row class="mx-auto">
+                <div class="py-2 w-100">
+                    <ion-button expand="block"
+                                color="danger">
+                        ثبت
+                    </ion-button>
+                </div>
+            </ion-row>
+            <ion-row class="mx-auto text-center mt-3 sign_upb_before">
+                <div class="mx-auto" style="z-index: 10000">قبلا ثبت نام کردم</div>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

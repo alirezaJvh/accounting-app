@@ -1,0 +1,85 @@
+<ion-content fullscreen>
+    <ion-grid class="back-btn-box w-100 ion-padding">
+        <ion-row>
+            <div class="back-btn">
+                <ion-icon>back</ion-icon>
+            </div>
+            <div class="ml-2 mt-1 title">
+                تکمیل پروفایل
+            </div>
+        </ion-row>
+    </ion-grid>
+    <div class="wrapper d-flex justify-content-center align-items-center">
+        <div *ngIf="step == 1"
+             class="d-flex flex-column justify-content-center align-items-center w-75 text-center">
+            <div class="mt-5">
+                <img src="../../../../../assets/image/auth/complete-profile/OBJECTS.png">
+            </div>
+
+            <div class="w-100 d-flex flex-column pt-4">
+                <!-- login inputs -->
+                <div class="mt-2">
+                    <div class="d-flex justify-content-start custom-input py-1">
+                        <img src="../../../../../assets/image/auth/person-icon.png"
+                             class="mx-1">
+                        <input class="pl-2"
+                               placeholder="جنسیت">
+                    </div>
+
+                    <div class="d-flex justify-content-start custom-input py-1 mt-3">
+                        <img src="../../../../../assets/image/auth/password-icon.png"
+                             class="mx-1">
+                        <input class="pl-2"
+                               placeholder="تاریخ تولد ">
+                    </div>
+                </div>
+
+
+                <div class="pt-5 w-100">
+                    <ion-button expand="block"
+                                (click)="step = 2"
+                                color="danger">
+                        مرحله بعد
+                    </ion-button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- next step -->
+        <div *ngIf="step == 2"
+             class="d-flex flex-column justify-content-center align-items-center w-75 text-center bottom-top-animation">
+            <div class="mt-5">
+                <img src="../../../../../assets/image/auth/complete-profile/Group%201692.png">
+            </div>
+
+            <div class="w-100 d-flex flex-column pt-4">
+                <!-- login inputs -->
+                <div class="mt-2">
+                    <div class="d-flex justify-content-start custom-input py-1">
+                        <img src="../../../../../assets/image/auth/person-icon.png"
+                             class="mx-1">
+                        <input class="pl-2"
+                               placeholder="شغل">
+                    </div>
+
+                    <div class="d-flex justify-content-start custom-input py-1 mt-3">
+                        <img src="../../../../../assets/image/auth/password-icon.png"
+                             class="mx-1">
+                        <input class="pl-2"
+                               placeholder="ورزش مورد علاقه ">
+                    </div>
+                </div>
+
+
+                <div class="pt-5 w-100">
+                    <ion-button expand="block"
+                                color="danger">
+                        تائید
+                    </ion-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-content fullscreen>
+    <div class="w-100 h-100 wrapper">
+        <ion-grid class="ion-padding">
+            <ion-row>
+                <div class="back-btn">
+                    <ion-icon>back</ion-icon>
+                </div>
+                <div class="ml-2  d-flex flex-column">
+                    <div class="title">لیست مربیان</div>
+                    <div class="mt-2" style="font-size: 14px">بسکتبال</div>
+                </div>
+            </ion-row>
+
+            <ion-row class="mt-4 px-2 flex-wrap d-flex justify-content-center coach-container"
+                     style="margin-bottom: 44px">
+                <div class="coach my-1 mx-1"
+                     style="cursor: pointer"
+                     routerLink="5"
+                     *ngFor="let i of [1,1,1,1,1,1,1,1]">
+                    <img class="w-100"
+                         src="../../../../../../assets/image/home/field/Screenshot%20from%202020-01-01%2023-09-16.png">
+                    <div class="d-flex flex-column px-2">
+                        <div class="my-2"
+                             style="font-size: 14px">علیرضا نصیری</div>
+                        <div class="my-1"
+                             style="font-size: 11px;color: #acacac">body building</div>
+                    </div>
+                </div>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>
+
+
+
+<ion-tab-bar slot="bottom">
+    <ion-tab-button tab="music">
+        <img src="../../../../../assets/image/avatar%20(1).png" width="21"/>
+    </ion-tab-button>
+    <ion-tab-button tab="music">
+        <img src="../../../../../assets/image/calendar.png" width="23"/>
+    </ion-tab-button>
+    <ion-tab-button tab="movies">
+        <img src="../../../../../assets/image/Group%20800.png" width="28"/>
+    </ion-tab-button>
+    <ion-tab-button tab="games">
+        <img src="../../../../../assets/image/Group%20946.png" width="22"/>
+    </ion-tab-button>
+</ion-tab-bar>

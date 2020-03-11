@@ -1,0 +1,110 @@
+
+.header {
+  height: 55%;
+  display: block;
+}
+
+#field-image {
+
+  min-height: 330px;
+  height: 55%;
+  background: url("../../../../../assets/image/home/field/sport_field.png") no-repeat center;
+  background-size: cover;
+  position: relative;
+
+  @media (min-width: 767.98px) {
+    min-height: 530px !important;
+  }
+
+  @media (min-width: 991.98px) {
+    min-height: 630px !important;
+  }
+
+  .image-cover {
+    position: absolute;
+    background: rgba(83, 81, 81, 0.04);
+  }
+}
+
+.filter-input {
+  min-width: calc(100% - 100px);
+  border-color: #7b7b7b !important;
+  max-width: 80%;
+  margin-right: 8px;
+
+  input {
+    background: rgba(0, 0, 0, 0) !important;
+  }
+}
+
+.menu {
+  height: 35px;
+  //top: -16px;
+  color: #36cc45;
+  font-weight: bold;
+  z-index: 500;
+  //margin-top: 60%;
+
+  ion-col {
+    background: white;
+    border: 1px solid #36cc45;
+    line-height: 2px;
+  }
+
+  :first-child {
+    border-radius: 0 36px 0 0;
+    color: white;
+    background: #36cc45;
+    transition: border 0.7s;
+  }
+
+  :last-child {
+    border-radius: 36px 0 0 0;
+    transition: all 0.7s;
+  }
+}
+
+.intro-wrapper {
+  position: relative;
+  height: 45%;
+  //z-index: 50000;
+
+
+  .tabs-title {
+    color: #545654;
+    font-weight: bold;
+  }
+
+  .button-tab-line {
+    height: 5px !important;
+    width: 40px;
+  }
+
+  .tab {
+    font-size: 13px;
+    color: #707070;
+    line-height: 22px;
+  }
+
+  .history-section {
+    color: white;
+    width: 65px;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    font-size: 15px !important;
+    border-radius: 20px 0 0 20px;
+  }
+}
+
+.menu-border-radius-zero {
+  ion-col {
+    border-radius: 0 !important;
+    transition: all 0.5s;
+  }
+}
+
+
+.primary-bg {
+  background: #4dff5e !important;
+}
