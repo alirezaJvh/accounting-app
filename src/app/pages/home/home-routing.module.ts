@@ -15,6 +15,11 @@ const routes: Routes = [
             .then(m => m.SportFieldsModule)
     },
     {
+        path: 'order',
+        loadChildren: () => import('./order/order.module')
+            .then(m => m.OrderModule)
+    },
+    {
         path: 'profile',
         component: ProfilePage
     },

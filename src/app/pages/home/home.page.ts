@@ -17,7 +17,7 @@ export class HomePage {
             {
                 icon: '../../../assets/image/home/newspaper%20(1).svg',
                 title: {
-                    text: 'اخبـــار و اطلاع رســانی',
+                    text: 'حواله',
                     class: ''
                 },
                 link: 'home',
@@ -26,14 +26,14 @@ export class HomePage {
             {
                 icon: '../../../assets/image/home/ball-of-basketball.svg',
                 title: {
-                    text: 'رشتــه های ورزشــی',
+                    text: 'فروش',
                     class: ''
                 },
                 link: 'home/sport-fields',
                 class: 'margin-right-zero'
             }
         ],
-        [
+      /*  [
             {
                 icon: '../../../assets/image/home/running.svg',
                 title: {
@@ -72,7 +72,7 @@ export class HomePage {
                 link: 'home',
                 class: 'margin-right-zero'
             }
-        ],
+        ],*/
     ];
 
 }
