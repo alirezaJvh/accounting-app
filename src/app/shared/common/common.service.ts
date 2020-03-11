@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 // @ts-ignore
 import Insurers from '../data/facilities/insurance/Insurers.json';
 import {Router} from '@angular/router';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import { ToastController } from '@ionic/angular';
 import * as moment from 'jalali-moment';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class CommonService {
   private user: any;
 
   constructor(private router: Router,
-              public snackbar: MatSnackBar) {
+              public snackbar: ToastController) {
   }
 
   setUser(u) {
@@ -48,7 +48,7 @@ export class CommonService {
     // if (this.isShopAdmin()) {
     //   this.router.navigate(['/admin']);
     // }
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/home']);
   }
 
   isEnglish(m) {
@@ -72,12 +72,10 @@ export class CommonService {
   }
 
   showMessage(message, state, obj = {}) {
-    this.snackbar.open(message, undefined, {
-      verticalPosition: 'bottom',
-      horizontalPosition: 'center',
-      duration: 2000,
-      panelClass: state,
-      ...obj
+    this.snackbar.create({
+      message,
+      color: (state === 'success-msg') ? 'success' : 'warning',
+      duration: 2000
     });
   }
 

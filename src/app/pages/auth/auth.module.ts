@@ -4,12 +4,14 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {IonicModule} from '@ionic/angular';
 import {SignupPage} from './signup/signup.page';
 import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         AuthRoutingModule,
         IonicModule,
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule
     ],
     providers: [],
     declarations: [
