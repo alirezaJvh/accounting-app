@@ -41,7 +41,10 @@
             </ion-row>
 
             <ion-row class="my-3 d-flex justify-content-end">
-                <ion-button color="success">درخواست</ion-button>
+                <ion-button (click)="openModal()"
+                            color="success">
+                    <span>درخواست</span>
+                </ion-button>
             </ion-row>
         </ion-grid>
 

@@ -5,7 +5,7 @@ import {OrderRoutingModule} from './order-routing.module';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProductListPage} from './product-list/product-list.page';
-import {ProductPage} from './product-list/product/product.page';
+import {ProductModal, ProductPage} from './product-list/product/product.page';
 
 @NgModule({
     imports: [
@@ -19,10 +19,12 @@ import {ProductPage} from './product-list/product/product.page';
         OrderPage,
         CodeModalPage,
         ProductListPage,
-        ProductPage
+        ProductPage,
+        ProductModal
     ],
     entryComponents: [
-        CodeModalPage
+        CodeModalPage,
+        ProductModal
     ]
 })
 
