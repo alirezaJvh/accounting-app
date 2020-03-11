@@ -6,8 +6,9 @@
                     <ion-icon>back</ion-icon>
                 </div>
                 <div class="ml-2  d-flex flex-column">
-                    <div class="title">لیست </div>
-                    <div class="mt-2" style="font-size: 14px">بسکتبال</div>
+                    <div class="title mt-1">
+                        {{list[0].product.name}}
+                    </div>
                 </div>
             </ion-row>
 
@@ -18,7 +19,7 @@
                      routerLink="5"
                      *ngFor="let i of [1,1,1,1,1,1,1,1]">
                     <img class="w-100"
-                         src="../../../../../../assets/image/home/field/Screenshot%20from%202020-01-01%2023-09-16.png">
+                         src="../../../../../assets/image/home/field/Screenshot%20from%202020-01-01%2023-09-16.png">
                     <div class="d-flex flex-column px-2">
                         <div class="my-2"
                              style="font-size: 14px">علیرضا نصیری</div>

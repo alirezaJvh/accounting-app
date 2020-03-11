@@ -1,5 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
+import {HttpClient} from '@angular/common/http';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {CommonService} from '../../../shared/common/common.service';
 
 @Component({
     selector: 'order-page',
@@ -31,14 +35,51 @@ export class OrderPage {
     styleUrls: ['./modal/code-modal.scss']
 })
 
-export class CodeModalPage {
+export class CodeModalPage implements OnInit {
 
-    constructor(public modalCntr: ModalController) {
+    constructor(public modalCntr: ModalController,
+                private http: HttpClient,
+                private formBuilder: FormBuilder,
+                private router: Router,
+                private commonService: CommonService) {
     }
 
+    formGroup: FormGroup;
     loading = false;
+
+    ngOnInit(): void {
+        this.formGroup = this.formBuilder.group({
+            code: new FormControl('')
+        });
+    }
 
     dismissModal() {
         this.modalCntr.dismiss();
+    }
+
+    sendRequest() {
+        this.loading = true;
+        const param = {
+            id: this.formGroup.get('code').value
+        };
+        this.http.post('http://127.0.0.1:9000/v1/shop/product/search', param, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .subscribe(
+                val => {
+                    console.log(val);
+                    this.loading = false;
+                    localStorage.setItem('product-list', JSON.stringify(val));
+                    this.dismissModal();
+                    const list: any = val;
+                    if (!list.length) {
+                        this.router.navigate(['/home/order/product-list']);
+                    } else {
+                        this.commonService.showMessage('محصولی موجود نمیباشد', 'error-msg');
+                    }
+                }
+            );
     }
 }
