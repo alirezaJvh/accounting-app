@@ -14,25 +14,31 @@ export class OrderPage {
     async presentCodeModal() {
         const modal = await this.modalController.create({
             component: CodeModalPage,
-        })
+        });
         return await modal.present();
     }
 
-   /* dismissModal() {
-        this.modalController.dismiss({
-            dismissed: true
-        });
-    }*/
+    /* dismissModal() {
+         this.modalController.dismiss({
+             dismissed: true
+         });
+     }*/
 }
 
 @Component({
     selector: 'code-modal-page',
-    templateUrl: './modal/code-modal.html'
+    templateUrl: './modal/code-modal.html',
+    styleUrls: ['./modal/code-modal.scss']
 })
 
 export class CodeModalPage {
-   constructor(public modalCntr: ModalController){}
-     dismissModal() {
-         this.modalCntr.dismiss();
+
+    constructor(public modalCntr: ModalController) {
+    }
+
+    loading = false;
+
+    dismissModal() {
+        this.modalCntr.dismiss();
     }
 }
