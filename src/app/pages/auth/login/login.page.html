@@ -19,32 +19,37 @@
                         <img src="../../../../assets/image/auth/person-icon.png"
                              class="mx-1">
                         <input class="pl-2"
+                               required
                                formControlName="username"
                                placeholder="نــام کـــابری">
                     </div>
+
 
                     <div class="d-flex justify-content-start custom-input py-1 mt-3">
                         <img src="../../../../assets/image/auth/password-icon.png"
                              class="mx-1">
                         <input class="pl-2"
+                               required
                                formControlName="password"
                                placeholder="رمــز عبــور ">
                     </div>
+
+                    <div class="py-2 w-100">
+                        <ion-button *ngIf="!loading"
+                                    type="submit"
+                                    expand="block"
+                                    (click)="login()"
+                                    color="success">
+                            ورود
+                        </ion-button>
+                        <ion-button *ngIf="loading"
+                                    expand="block"
+                                    color="success">
+                            <ion-spinner name="dots"></ion-spinner>
+                        </ion-button>
+                    </div>
                 </form>
 
-                <div class="py-2 w-100">
-                    <ion-button *ngIf="!loading"
-                                expand="block"
-                                (click)="login()"
-                                color="success">
-                        ورود
-                    </ion-button>
-                    <ion-button *ngIf="loading"
-                                expand="block"
-                                color="success">
-                        <ion-spinner name="dots"></ion-spinner>
-                    </ion-button>
-                </div>
 
                 <!-- <div class="py-2 w-100">
                      <ion-button expand="block"
