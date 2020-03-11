@@ -22,11 +22,12 @@ export class OrderPage {
         return await modal.present();
     }
 
-    /* dismissModal() {
-         this.modalController.dismiss({
-             dismissed: true
-         });
-     }*/
+    getUsername() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.username;
+    }
+
+
 }
 
 @Component({
@@ -53,6 +54,7 @@ export class CodeModalPage implements OnInit {
         });
     }
 
+
     dismissModal() {
         this.modalCntr.dismiss();
     }
@@ -74,7 +76,7 @@ export class CodeModalPage implements OnInit {
                     localStorage.setItem('product-list', JSON.stringify(val));
                     this.dismissModal();
                     const list: any = val;
-                    if (!list.length) {
+                    if (list.length) {
                         this.router.navigate(['/home/order/product-list']);
                     } else {
                         this.commonService.showMessage('محصولی موجود نمیباشد', 'error-msg');

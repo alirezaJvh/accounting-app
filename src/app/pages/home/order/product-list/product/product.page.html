@@ -1,0 +1,66 @@
+<ion-content fullscreen>
+    <div class="w-100 h-100 wrapper">
+        <ion-grid class="ion-padding">
+            <ion-row>
+                <div class="back-btn">
+                    <ion-icon>back</ion-icon>
+                </div>
+                <div class="ml-2  d-flex flex-column">
+                    <div class="title mt-1">
+                        {{obj.product.reservoir.name}}
+                    </div>
+                    <div class="mt-2" style="font-size: 13px">
+                        {{obj.product.name}}
+                    </div>
+                </div>
+            </ion-row>
+
+            <ion-row class="mt-4 px-2 py-3  d-flex flex-column align-items-center">
+                <div class="w-100 py-2 d-flex justify-content-between product-info-box">
+                    <div style="color:#acacac">محصول :‌</div>
+                    <div> {{obj.product.name}}</div>
+                </div>
+
+                <div class="w-100 py-3 d-flex justify-content-between product-info-box">
+                    <div style="color:#acacac">انبار :‌</div>
+                    <div> {{obj.product.reservoir.name}}</div>
+                </div>
+
+                <div class="w-100 py-3 d-flex flex-column product-info-box">
+                    <div style="color:#acacac">سایز :‌</div>
+                    <div class="w-100 d-flex flex-row flex-wrap mt-4">
+                        <div *ngFor="let item of sizes"
+                                    class="mx-3 btn d-flex justify-content-center align-items-center">
+                            <div class="px-3 py-2">{{item.size.value}}</div>
+                            <div class="badge px-1 py-1 d-flex justify-content-center align-items-center">
+                                {{item.count === null ? 0 : item.count}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-row>
+
+            <ion-row class="my-3 d-flex justify-content-end">
+                <ion-button color="success">درخواست</ion-button>
+            </ion-row>
+        </ion-grid>
+
+    </div>
+</ion-content>
+
+
+
+<ion-tab-bar slot="bottom">
+    <ion-tab-button tab="music">
+        <img src="../../../../../assets/image/avatar%20(1).png" width="21"/>
+    </ion-tab-button>
+    <ion-tab-button tab="music">
+        <img src="../../../../../assets/image/calendar.png" width="23"/>
+    </ion-tab-button>
+    <ion-tab-button tab="movies">
+        <img src="../../../../../assets/image/Group%20800.png" width="28"/>
+    </ion-tab-button>
+    <ion-tab-button tab="games">
+        <img src="../../../../../assets/image/Group%20946.png" width="22"/>
+    </ion-tab-button>
+</ion-tab-bar>

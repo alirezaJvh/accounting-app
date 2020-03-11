@@ -1,3 +1,14 @@
+
+<ion-header translucent>
+    <ion-toolbar color="success">
+        <ion-title>{{getUsername()}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                <span></span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 <ion-content fullscreen>
     <div class="top-left-img"></div>
     <div class="bottom-right-img"></div>
@@ -47,3 +58,19 @@
         </ion-grid>
     </div>
 </ion-content>
+
+
+<ion-tab-bar slot="bottom">
+    <ion-tab-button tab="music">
+        <img src="../../../../../assets/image/avatar%20(1).png" width="21"/>
+    </ion-tab-button>
+    <ion-tab-button tab="music">
+        <img src="../../../../../assets/image/calendar.png" width="23"/>
+    </ion-tab-button>
+    <ion-tab-button tab="movies">
+        <img src="../../../../../assets/image/Group%20800.png" width="28"/>
+    </ion-tab-button>
+    <ion-tab-button tab="games">
+        <img src="../../../../../assets/image/Group%20946.png" width="22"/>
+    </ion-tab-button>
+</ion-tab-bar>
