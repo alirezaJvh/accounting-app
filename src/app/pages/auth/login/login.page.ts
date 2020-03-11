@@ -10,7 +10,7 @@ import {CommonService} from '../../../shared/common/common.service';
     styleUrls: ['./login.page.scss']
 })
 
-export class LoginPage implements OnInit{
+export class LoginPage implements OnInit {
     constructor(private router: Router,
                 private formBuilder: FormBuilder,
                 private http: HttpClient,
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit{
     }
 
     formGroup: FormGroup;
-    loading = false
+    loading = false;
 
     ngOnInit(): void {
         this.formGroup = this.formBuilder.group({
@@ -30,16 +30,19 @@ export class LoginPage implements OnInit{
     login() {
         const param = {
             username: this.formGroup.get('username').value,
-            password: this.formGroup.get('password').value
-        }
+            password: this.formGroup.get('password').value,
+            grant_type: 'password'
+        };
         let sp = Object.keys(param).map((key) => {
             return encodeURIComponent(key) + '=' + encodeURIComponent(param[key]);
         }).join('&');
         this.loading = true;
-        this.http.post<any>('http://127.0.0.1:9000/oauth/token', sp, {headers:{
+        this.http.post<any>('http://127.0.0.1:9000/oauth/token', sp, {
+            headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 Authorization: 'Basic ZW5nX2FwcDplbmdfYXBw'
-            }})
+            }
+        })
             .subscribe(
                 val => {
                     localStorage.setItem('token', val.access_token);
@@ -50,7 +53,7 @@ export class LoginPage implements OnInit{
                     this.commonService.showMessage('خوش آمدید.', 'success-msg');
 
                 }
-            )
+            );
     }
 
     signup() {

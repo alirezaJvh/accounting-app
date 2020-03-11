@@ -33,13 +33,13 @@
                 </form>
 
                 <div class="py-2 w-100">
-                    <ion-button *ngIf="loading"
+                    <ion-button *ngIf="!loading"
                                 expand="block"
                                 (click)="login()"
                                 color="success">
                         ورود
                     </ion-button>
-                    <ion-button *ngIf="!loading"
+                    <ion-button *ngIf="loading"
                                 expand="block"
                                 color="success">
                         <ion-spinner name="dots"></ion-spinner>

@@ -71,12 +71,13 @@ export class CommonService {
     return today.diff(last, 'days');
   }
 
-  showMessage(message, state, obj = {}) {
-    this.snackbar.create({
+  async showMessage(message, state, obj = {}) {
+    const toast = await this.snackbar.create({
       message,
       color: (state === 'success-msg') ? 'success' : 'warning',
       duration: 2000
     });
+    toast.present();
   }
 
   logOut() {
