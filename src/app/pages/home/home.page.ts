@@ -20,7 +20,7 @@ export class HomePage {
                     text: 'حواله',
                     class: ''
                 },
-                link: 'home',
+                link: '/home/order',
                 class: 'margin-left-zero'
             },
             {
