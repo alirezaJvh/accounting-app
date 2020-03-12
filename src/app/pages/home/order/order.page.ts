@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CommonService} from '../../../shared/common/common.service';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
     selector: 'order-page',
@@ -15,7 +15,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 export class OrderPage {
     constructor(public modalController: ModalController,
                 private barcodeScanner: BarcodeScanner,
-                private commonService: CommonService) {
+                private commonService: CommonService,
+                private http: HttpClient,
+                private router: Router) {
     }
 
     async presentCodeModal() {
@@ -28,9 +30,32 @@ export class OrderPage {
     scanner() {
         this.barcodeScanner.scan().then(barcodeData => {
             alert('Barcode data' + barcodeData.text);
+            this.sendRequest();
         }).catch(err => {
             this.commonService.showMessage('لطفا مجددا تلاش کنید', 'error-msg');
         });
+    }
+
+    sendRequest(id) {
+        const param = {
+            id
+        };
+        this.http.post('http://127.0.0.1:9000/v1/shop/product/search', param, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .subscribe(
+                val => {
+                    localStorage.setItem('product-list', JSON.stringify(val));
+                    const list: any = val;
+                    if (list.length) {
+                        this.router.navigate(['/home/order/product-list']);
+                    } else {
+                        this.commonService.showMessage('محصولی موجود نمیباشد', 'error-msg');
+                    }
+                }
+            );
     }
 
     getUsername() {
@@ -52,7 +77,7 @@ export class CodeModalPage implements OnInit {
                 private formBuilder: FormBuilder,
                 private router: Router,
                 private commonService: CommonService,
-                ) {
+    ) {
     }
 
     formGroup: FormGroup;
