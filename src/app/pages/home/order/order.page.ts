@@ -36,6 +36,11 @@ export class OrderPage {
         });
     }
 
+    getUsername() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.username;
+    }
+
     sendRequest(id) {
         const param = {
             id

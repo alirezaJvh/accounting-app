@@ -74,7 +74,7 @@ export class CommonService {
   async showMessage(message, state, obj = {}) {
     const toast = await this.snackbar.create({
       message,
-      color: (state === 'success-msg') ? 'success' : 'warning',
+      color: (state === 'success-msg') ? 'success' : 'danger',
       duration: 2000
     });
     toast.present();
