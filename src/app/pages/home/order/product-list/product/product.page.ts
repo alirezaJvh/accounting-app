@@ -15,7 +15,8 @@ export class ProductPage implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private http: HttpClient,
-                public modalController: ModalController) {
+                public modalController: ModalController,
+                private commonService: CommonService) {
     }
 
     obj: any;

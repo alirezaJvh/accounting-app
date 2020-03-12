@@ -32,6 +32,18 @@ export class CommonService {
     return false;
   }
 
+  logOut() {
+    const token = localStorage.getItem('toke');
+    const user = localStorage.getItem('user');
+    if (token) {
+      localStorage.removeItem('token');
+    }
+    if (user) {
+      localStorage.removeItem('user');
+    }
+    this.router.navigate(['/auth']);
+  }
+
   isCustomer() {
     return this.hasRole('Darth_Vader');
   }

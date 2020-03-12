@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {CommonService} from '../../../../shared/common/common.service';
 
 @Component({
     selector: 'app-product-list-page',
@@ -8,7 +9,8 @@ import {Router} from '@angular/router';
 })
 
 export class ProductListPage implements OnInit {
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private commonService: CommonService) {
     }
 
     list = [];

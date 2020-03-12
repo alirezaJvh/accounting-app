@@ -62,11 +62,15 @@
 
 
 <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="music">
+    <ion-tab-button tab="music" routerLink="/home/profile">
         <img src="../../../../../assets/image/avatar%20(1).png" width="21"/>
     </ion-tab-button>
 
     <ion-tab-button tab="games" routerLink="/home">
         <img src="../../../../../assets/image/Group%20946.png" width="22"/>
+    </ion-tab-button>
+
+    <ion-tab-button tab="logout" (click)="commonService.logOut()">
+        <img  src="../../../../assets/image/home/profile/sign_out_option.svg" width="22">
     </ion-tab-button>
 </ion-tab-bar>
