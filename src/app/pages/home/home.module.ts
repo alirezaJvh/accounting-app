@@ -6,7 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {HomePage} from './home.page';
 import {HomeRoutingModule} from './home-routing.module';
 import {ProfilePage} from './profile/profile.page';
-import {CompleteProfilePage} from './profile/complete-profile/complete-profile.page';
+
 
 @NgModule({
     imports: [
