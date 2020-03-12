@@ -94,28 +94,43 @@ export class CodeModalPage implements OnInit {
     }
 
     sendRequest() {
-        this.loading = true;
         const param = {
             id: this.formGroup.get('code').value
         };
-        this.http.post('http://127.0.0.1:9000/v1/shop/product/search', param, {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-            .subscribe(
-                val => {
-                    console.log(val);
-                    this.loading = false;
-                    localStorage.setItem('product-list', JSON.stringify(val));
-                    this.dismissModal();
-                    const list: any = val;
-                    if (list.length) {
-                        this.router.navigate(['/home/order/product-list']);
-                    } else {
-                        this.commonService.showMessage('محصولی موجود نمیباشد', 'error-msg');
-                    }
+        if (this.isValid(param)) {
+            this.loading = true;
+            this.http.post('http://127.0.0.1:9000/v1/shop/product/search', param, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
-            );
+            })
+                .subscribe(
+                    val => {
+                        console.log(val);
+                        this.loading = false;
+                        localStorage.setItem('product-list', JSON.stringify(val));
+                        this.dismissModal();
+                        const list: any = val;
+                        if (list.length) {
+                            this.router.navigate(['/home/order/product-list']);
+                        } else {
+                            this.commonService.showMessage('محصولی موجود نمیباشد', 'error-msg');
+                        }
+                    },
+                    err => {
+                        console.log(err);
+                    }
+                );
+        }
+
+    }
+
+    isValid(param) {
+        if (param.id !== '') {
+            return true;
+        } else {
+            this.commonService.showMessage('این فیلد الزامی است', 'error-msg');
+            return false;
+        }
     }
 }

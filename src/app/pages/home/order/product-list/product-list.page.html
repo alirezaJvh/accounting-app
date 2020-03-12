@@ -2,8 +2,8 @@
     <div class="w-100 h-100 wrapper">
         <ion-grid class="ion-padding">
             <ion-row>
-                <div class="back-btn">
-                    <ion-icon>back</ion-icon>
+                <div class="back-btn" routerLink="/home/order">
+                    <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
                 </div>
                 <div class="ml-2  d-flex flex-column">
                     <div class="title mt-1">
@@ -52,13 +52,8 @@
     <ion-tab-button tab="music">
         <img src="../../../../../assets/image/avatar%20(1).png" width="21"/>
     </ion-tab-button>
-    <ion-tab-button tab="music">
-        <img src="../../../../../assets/image/calendar.png" width="23"/>
-    </ion-tab-button>
-    <ion-tab-button tab="movies">
-        <img src="../../../../../assets/image/Group%20800.png" width="28"/>
-    </ion-tab-button>
-    <ion-tab-button tab="games">
+
+    <ion-tab-button tab="games" routerLink="/home">
         <img src="../../../../../assets/image/Group%20946.png" width="22"/>
     </ion-tab-button>
 </ion-tab-bar>
