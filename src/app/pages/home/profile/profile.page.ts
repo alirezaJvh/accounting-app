@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {CommonService} from '../../../shared/common/common.service';
 
 @Component({
     selector: 'page-profile',
@@ -7,8 +8,10 @@ import {Router} from '@angular/router';
     styleUrls: ['./profile.page.scss']
 })
 
-export class  ProfilePage {
-    constructor(private router: Router) {}
+export class  ProfilePage implements OnInit{
+    constructor(private router: Router,
+                private commonService: CommonService) {}
+    user: any;
     items = [
         {
             icon: '../../../../assets/image/home/profile/edit_5.svg',
@@ -26,6 +29,15 @@ export class  ProfilePage {
             link: '/home/complete-profile'
         },
     ];
+
+    ngOnInit(): void {
+        this.getUser();
+    }
+
+    getUser() {
+        this.user = JSON.parse(localStorage.getItem('user'));
+        console.log(this.user)
+    }
 
     routeTo(link) {
         this.router.navigate([link]);

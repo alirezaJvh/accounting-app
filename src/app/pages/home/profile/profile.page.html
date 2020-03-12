@@ -3,21 +3,16 @@
         <div class="green-part w-100 ion-padding">
             <div class="w-100 d-flex flex-row justify-content-between">
                 <div class="d-flex">
-                    <div class="back-btn">
-                        <ion-icon>back</ion-icon>
+                    <div class="back-btn"
+                         routerLink="/home">
+                        <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
                     </div>
                     <div class="ml-2 mt-1 title"
                          style="color: white;font-weight: bold;">
                         حســاب کاربری
                     </div>
                 </div>
-                <div class="score-board mr-2">
-                    <div class="score d-flex justify-content-center">
-                        <div class="mr-3 mt-1">۳۰ امتیاز</div>
-                    </div>
-                    <img class="score-icon"
-                         src="../../../../assets/image/home/profile/trophy_3.svg">
-                </div>
+
             </div>
         </div>
 
@@ -33,45 +28,30 @@
                         </div>
                     </div>
                     <div class="user-name w-100 d-flex justify-content-center flex-column">
-                        <div class="mx-auto name ">دنیا طلوع</div>
-                        <div class="mx-auto mt-3 phone-number">0912564546</div>
+                        <div class="mx-auto name ">
+                            <span> {{user.name}} </span>
+                            <span> {{user.family}} </span>
+                        </div>
                     </div>
-                    <div class="bottom-card w-100 d-flex flex-row py-1">
-                        <div class="message w-50 d-flex flex-row flex-wrap">
-                            <div class="w-100 d-flex justify-content-center">
-                                <img class="mx-auto"
-                                     src="../../../../assets/image/home/profile/black_back_closed_envelope_shape.svg">
+                    <div class="bottom-card w-100 d-flex flex-column justify-content-center py-1">
+
+                            <div class="mx-auto mt-1  d-flex justify-content-center" style="font-size: 14px">
+                                شماره تماس
                             </div>
-                            <div class="w-100 text-center my-auto">پیام ها</div>
-                        </div>
-                        <div class="pedometer w-50 d-flex flex-row flex-wrap">
-                            <div class="w-100 d-flex justify-content-center">
-                                <img class="mx-auto"
-                                     src="../../../../assets/image/home/profile/footprints_1.svg"/>
+                            <div class="mx-auto mt-2">
+                                {{user.mobile ? user.mobile : '--'}}
                             </div>
-                            <div class="w-100 text-center my-auto">
-                                <span>قدم شمار</span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
 
             <div class="item-list d-flex flex-row flex-wrap w-100">
-                <div class="w-100 d-flex flex-row"
-                     *ngFor="let item of items"
-                     (click)="routeTo(item.link)">
-                    <div class="icon d-flex justify-content-center">
-                        <img class="ml-3" [src]="item.icon">
-                    </div>
-                    <div class="item-text ml-4 py-2">
-                        {{item.text}}
-                    </div>
-                </div>
 
-                <div class="w-100 d-flex flex-row">
+                <div class="w-100 d-flex flex-row" (click)="commonService.logOut()">
                     <div class="icon d-flex justify-content-center">
-                        <img class="ml-3" src="../../../../assets/image/home/profile/sign_out_option.svg">
+                        <img class="ml-3"
+                             src="../../../../assets/image/home/profile/sign_out_option.svg">
                     </div>
                     <div class="item-text ml-4 py-2" style="border: none">
                         خروج از حساب کاربری

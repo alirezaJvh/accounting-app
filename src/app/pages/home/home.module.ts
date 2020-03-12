@@ -18,7 +18,6 @@ import {CompleteProfilePage} from './profile/complete-profile/complete-profile.p
     declarations: [
         HomePage,
         ProfilePage,
-        CompleteProfilePage
     ]
 })
 export class HomePageModule {

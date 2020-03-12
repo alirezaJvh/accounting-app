@@ -19,10 +19,7 @@ const routes: Routes = [
         path: 'profile',
         component: ProfilePage
     },
-    {
-        path: 'complete-profile',
-        component: CompleteProfilePage
-    }
+
 ];
 
 
