@@ -9,11 +9,7 @@ const routes: Routes = [
         path: '',
         component: HomePage
     },
-    {
-        path: 'sport-fields',
-        loadChildren: () => import('./sport-fields/sport-fields.module')
-            .then(m => m.SportFieldsModule)
-    },
+
     {
         path: 'order',
         loadChildren: () => import('./order/order.module')
