@@ -28,13 +28,15 @@
                 </div>
 
                 <div class="w-100 py-3 d-flex  product-info-box">
-                    <div style="color:#acacac">از :‌</div>
+                    <div style="color:#acacac">از : ‌</div>
                     <div>  {{data.product.reservoir.name}}</div>
                 </div>
 
-                <div class="w-100 py-3 d-flex  product-info-box">
-                    <div style="color:#acacac">به :‌</div>
-                    <ion-select [(ngModel)]="toId" interface="popover" id="selection">
+                <div class="w-100 pt-2 pb-3 d-flex  product-info-box">
+                    <div class="mt-1" style="color:#acacac">به :‌</div>
+                    <ion-select [(ngModel)]="toId"
+                                interface="popover"
+                                id="selection">
                         <ion-select-option *ngFor="let item of reservoirList"
                                            [value]="item.id">
                             {{item.name}}
@@ -44,11 +46,19 @@
 
                 <div class="w-100 d-flex flex-row justify-content-between"
                      *ngFor="let item of orderSized; let i = index">
-                    <div style="width: 40%" class="mx-1 mt-3">
-                        <span>سایز :‌</span>
-                        <span> {{item.size}}</span>
+                    <div style="width: 55%" class="mx-1 mt-3 d-flex flex-row ">
+                        <div class="d-flex flex-row">
+                            <div class="pt-1" style="color:#acacac;font-size: 13px">سایز :‌</div>
+                            <div class="pt-1 px-1"> {{item.size}}</div>
+                        </div>
+
+                        <div class="ml-4 d-flex flex-row">
+                            <div class="pt-1" style="color:#acacac;font-size: 12px">موجودی : </div>
+                            <div class="pt-1 px-1">{{sizes[i].count}}</div>
+                        </div>
+
                     </div>
-                    <ion-item style="width: 60%" class="mx-1">
+                    <ion-item style="width: 45%" class="mx-1">
                         <ion-label>تعداد :</ion-label>
                         <ion-input [(ngModel)]="orderSized[i].value"></ion-input>
                     </ion-item>
@@ -57,14 +67,14 @@
             </ion-row>
             <ion-row>
                 <div class="py-2 w-100 px-3">
-                    <ion-button *ngIf="!loading"
+                    <ion-button *ngIf="!loading && !submitLoading"
                                 type="submit"
                                 expand="block"
                                 (click)="sendRequest()"
                                 color="success">
                         تایید
                     </ion-button>
-                    <ion-button *ngIf="loading"
+                    <ion-button *ngIf="submitLoading"
                                 expand="block"
                                 color="success">
                         <ion-spinner name="dots"></ion-spinner>

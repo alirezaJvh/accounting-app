@@ -56,7 +56,7 @@ export class ProductPage implements OnInit {
                 data: this.obj,
                 sizes: this.sizes
             }
-        })
+        });
         return await modal.present();
     }
 }
@@ -67,7 +67,7 @@ export class ProductPage implements OnInit {
     styleUrls: ['./modal/product-modal.scss']
 })
 
-export class ProductModal implements OnInit{
+export class ProductModal implements OnInit {
     constructor(public modalCntr: ModalController,
                 private http: HttpClient,
                 private formBuilder: FormBuilder,
@@ -78,6 +78,7 @@ export class ProductModal implements OnInit{
     data: any;
     sizes: any;
     loading = false;
+    submitLoading = false;
     reservoirList: any;
     toId: any;
     orderSized = [];
@@ -90,7 +91,7 @@ export class ProductModal implements OnInit{
     }
 
     setOrderSizeObj() {
-        console.log(this.sizes)
+        console.log(this.sizes);
         for (const item of this.sizes) {
             this.orderSized.push({
                 id: item.size.id,
@@ -123,6 +124,11 @@ export class ProductModal implements OnInit{
                 });
     }
 
+    getUserId() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.id;
+    }
+
     prepareData() {
         const param = {
             source: {
@@ -135,29 +141,72 @@ export class ProductModal implements OnInit{
                 // tslint:disable-next-line:radix
                 id: this.data.product.id
             },
+            submitter: {
+                id: this.getUserId()
+            },
             orders: JSON.stringify(this.orderSized)
             // tslint:disable-next-line:radix
         };
-        return param
+        return param;
     }
 
     sendRequest() {
-        console.log(this.toId);
-        console.log(this.orderSized);
-        const param = this.prepareData();
-        this.http.post('http://127.0.0.1:9000/v1/shop/order/submit', param, {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('token'),
-                'Content-Type': 'application/json'
+        if (this.isValid()) {
+            this.submitLoading = true;
+            console.log(this.orderSized);
+            const param = this.prepareData();
+            this.http.post('http://127.0.0.1:9000/v1/shop/order/submit', param, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json'
+                }
+            })
+                .subscribe(
+                    (val) => {
+                        this.submitLoading = false;
+                        this.commonService.showMessage('عملیات با موفقیت انجام شد.', 'success-msg');
+                        this.dismissModal();
+                    },
+                    err => {
+                        console.log(err);
+                    });
+        }
+
+    }
+
+    isValid() {
+        if (this.hasDestination()) {
+            if (this.originAndDestinatinoDifferent()) {
+                if (this.isNumberOfRequestLessThanRemainder()) {
+                    return true;
+                } else {
+                    this.commonService.showMessage('تعداد درخواستی از تعدا موجودی بیشتر است ', 'error-msg');
+                }
+            } else {
+                this.commonService.showMessage('مبدا و مقصد نمیتواند یکی باشد', 'error-msg');
+                return false;
             }
-        })
-            .subscribe(
-                (val) => {
-                    this.commonService.showMessage('عملیات با موفقیت انجام شد.', 'success-msg');
-                    this.dismissModal();
-                },
-                response => {
-                });
+        } else {
+            this.commonService.showMessage('لطفا مقصد کالا رو مشخص کنید', 'error-msg');
+            return false;
+        }
+    }
+
+    isNumberOfRequestLessThanRemainder() {
+        for (const index in this.sizes) {
+            if (this.sizes[index].count < this.orderSized[index].value) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    originAndDestinatinoDifferent() {
+        return this.toId !== this.data.product.reservoir.id;
+    }
+
+    hasDestination() {
+        return this.toId !== undefined;
     }
 
 

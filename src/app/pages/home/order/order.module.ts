@@ -6,6 +6,7 @@ import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProductListPage} from './product-list/product-list.page';
 import {ProductModal, ProductPage} from './product-list/product/product.page';
+import {HeaderComonent} from '../../../component/header/header.comonent';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {ProductModal, ProductPage} from './product-list/product/product.page';
         CodeModalPage,
         ProductListPage,
         ProductPage,
-        ProductModal
+        ProductModal,
+        HeaderComonent
     ],
     entryComponents: [
         CodeModalPage,

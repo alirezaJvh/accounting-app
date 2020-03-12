@@ -30,7 +30,7 @@ export class OrderPage {
     scanner() {
         this.barcodeScanner.scan().then(barcodeData => {
             alert('Barcode data' + barcodeData.text);
-            this.sendRequest();
+            this.sendRequest(barcodeData.text);
         }).catch(err => {
             this.commonService.showMessage('لطفا مجددا تلاش کنید', 'error-msg');
         });
@@ -58,10 +58,6 @@ export class OrderPage {
             );
     }
 
-    getUsername() {
-        const user = JSON.parse(localStorage.getItem('user'));
-        return user.username;
-    }
 }
 
 @Component({
