@@ -26,7 +26,7 @@ export class ProductListPage implements OnInit {
         }
     }
 
-    routeToProduct(id) {
+    public routeToProduct(id) {
         const obj = this.getProduct(id);
         localStorage.setItem('product', JSON.stringify(obj));
         this.router.navigate(['/home/order/product-list/product']);
