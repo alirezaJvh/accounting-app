@@ -14,7 +14,15 @@
     <div class="top-left-img"></div>
     <div class="bottom-right-img"></div>
     <div class="w-100 h-100 wrapper d-flex justify-content-center align-items-center">
-        <ion-grid>
+        <div *ngIf="sannerLoading"
+             class="w-100 h-100 d-flex justify-content-center align-items-center">
+            <div >
+                <ion-spinner color="danger"
+                             name="crescent">
+                </ion-spinner>
+            </div>
+        </div>
+        <ion-grid *ngIf="!sannerLoading">
             <ion-row>
                 <ion-col (click)="presentCodeModal()">
                     <ion-card class="ion-padding card margin-left-zero">

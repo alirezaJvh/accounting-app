@@ -20,6 +20,8 @@ export class OrderPage {
                 private router: Router) {
     }
 
+    sannerLoading = false;
+
     async presentCodeModal() {
         const modal = await this.modalController.create({
             component: CodeModalPage,
@@ -41,6 +43,7 @@ export class OrderPage {
     }
 
     sendRequest(id) {
+        this.sannerLoading = true;
         const param = {
             id
         };
@@ -58,6 +61,12 @@ export class OrderPage {
                     } else {
                         this.commonService.showMessage('محصولی موجود نمیباشد', 'error-msg');
                     }
+                    this.sannerLoading = false;
+                },
+                error => {
+                    console.log(error);
+                    this.sannerLoading = false;
+                    this.commonService.showMessage('خطایی رخ داده است', 'error-msg');
                 }
             );
     }
@@ -94,6 +103,7 @@ export class CodeModalPage implements OnInit {
     }
 
     sendRequest() {
+        if (this.loading) return
         const param = {
             id: this.formGroup.get('code').value
         };

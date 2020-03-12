@@ -25,18 +25,14 @@
             </ion-row>
             <ion-row>
                 <div class="py-2 w-100 px-3">
-                    <ion-button *ngIf="!loading"
-                                type="submit"
+                    <ion-button type="submit"
                                 expand="block"
                                 (click)="sendRequest()"
                                 color="success">
-                        تایید
+                        <span *ngIf="!loading">تایید</span>
+                        <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
                     </ion-button>
-                    <ion-button *ngIf="loading"
-                                expand="block"
-                                color="success">
-                        <ion-spinner name="dots"></ion-spinner>
-                    </ion-button>
+
                 </div>
             </ion-row>
         </ion-grid>
