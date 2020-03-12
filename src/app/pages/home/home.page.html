@@ -13,23 +13,41 @@
     <div class="bottom-right-img"></div>
     <div class="w-100 h-100 wrapper d-flex justify-content-center align-items-center">
         <ion-grid>
-            <ion-row *ngFor="let row of data" class="mx-auto" style="width: 90%">
-                <ion-col *ngFor="let col of row">
-                    <ion-card class="ion-padding card"
-                              (click)="router.navigate([col.link])"
-                              [ngClass]="col.class">
+            <ion-row  class="mx-auto" style="width: 90%">
+                <ion-col>
+                    <ion-card class="ion-padding card margin-left-zero"
+                              (click)="router.navigate(['/home/order'])">
                         <ion-row>
                             <div class="icon-section primary-theme-bg mx-auto d-flex justify-content-center align-items-center">
-                                <img [src]="col.icon"
+                                <img src="../../../assets/image/home/newspaper%20(1).svg"
                                      width="20px"
                                      height="22px"/>
                             </div>
                         </ion-row>
                         <ion-row style="width: 90%">
-                            <div class="mx-auto ion-text-center pt-3 pb-2 px-2"
-                                 [ngClass]="col.title.class">
+                            <div class="mx-auto ion-text-center pt-3 pb-2 px-2">
                                 <ion-text>
-                                    {{col.title.text}}
+                                    حواله
+                                </ion-text>
+                            </div>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+
+                <ion-col>
+                    <ion-card class="ion-padding card margin-left-zero"
+                              (click)="scanBarcode()">
+                        <ion-row>
+                            <div class="icon-section primary-theme-bg mx-auto d-flex justify-content-center align-items-center">
+                                <img src="../../../assets/image/home/newspaper%20(1).svg"
+                                     width="20px"
+                                     height="22px"/>
+                            </div>
+                        </ion-row>
+                        <ion-row style="width: 90%">
+                            <div class="mx-auto ion-text-center pt-3 pb-2 px-2">
+                                <ion-text>
+                                    تحویل
                                 </ion-text>
                             </div>
                         </ion-row>

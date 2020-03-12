@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
             return encodeURIComponent(key) + '=' + encodeURIComponent(param[key]);
         }).join('&');
         this.loading = true;
-        this.http.post<any>('https://cors-anywhere.herokuapp.com/http://37.152.180.194:9000/oauth/token', sp, {
+        this.http.post<any>('http://127.0.0.1:9000/oauth/token', sp, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 Authorization: 'Basic ZW5nX2FwcDplbmdfYXBw'

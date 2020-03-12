@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
+import {CommonService} from '../../shared/common/common.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-home',
@@ -8,7 +11,10 @@ import {Router} from '@angular/router';
 })
 export class HomePage {
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private barcodeScanner: BarcodeScanner,
+                private commonService: CommonService,
+                private http: HttpClient) {
     }
 
 
@@ -17,67 +23,49 @@ export class HomePage {
         return user.username;
     }
 
-    data = [
-        [
-            {
-                icon: '../../../assets/image/home/newspaper%20(1).svg',
-                title: {
-                    text: 'حواله',
-                    class: ''
-                },
-                link: '/home/order',
-                class: 'margin-left-zero'
+    scanBarcode() {
+        let sizeId;
+        this.barcodeScanner.scan().then(barcodeData => {
+            // alert('Barcode data' + barcodeData.text);
+            const sizeId = barcodeData.text;
+            const userId = this.getUserId();
+            this.sendRequest(sizeId, userId);
+        }).catch(err => {
+            this.commonService.showMessage('لطفا مجددا تلاش کنید', 'error-msg');
+        });
+    }
+
+    sendRequest(sizeId, userId) {
+        const param = {
+            productSize: {
+                id: sizeId
             },
-            {
-                icon: '../../../assets/image/home/ball-of-basketball.svg',
-                title: {
-                    text: 'فروش',
-                    class: ''
-                },
-                link: 'home/sport-fields',
-                class: 'margin-right-zero'
+            user: {
+                id: userId
             }
-        ],
-      /*  [
-            {
-                icon: '../../../assets/image/home/running.svg',
-                title: {
-                    text: 'پویش تحرک',
-                    class: 'pb-3'
-                },
-                link: 'home',
-                class: 'margin-left-zero'
-            },
-            {
-                icon: '../../../assets/image/home/shield (2).svg',
-                title: {
-                    text: 'بیمــــه ',
-                    class: 'pb-3'
-                },
-                link: 'home',
-                class: 'margin-right-zero'
+        };
+        this.http.post('http://127.0.0.1:9000/v1/shop/timeline/save', param, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        ],
-        [
-            {
-                icon: '../../../assets/image/home/running.svg',
-                title: {
-                    text: 'پویش تحرک',
-                    class: 'pb-3'
+        })
+            .subscribe(
+                val => {
+                    console.log(val);
+                    this.commonService.showMessage('عملیات با موفقت انجام شد', 'success-msg');
                 },
-                link: 'home',
-                class: 'margin-left-zero'
-            },
-            {
-                icon: '../../../assets/image/home/shield (2).svg',
-                title: {
-                    text: 'بیمــــه ',
-                    class: 'pb-3'
-                },
-                link: 'home',
-                class: 'margin-right-zero'
-            }
-        ],*/
-    ];
+                err => {
+                    console.log(err);
+                    this.commonService.showMessage('خطایی رخ داده است', 'error-msg');
+                }
+            )
+    }
+
+    getUserId() {
+        const user = JSON.parse(localStorage.getItem('user'))
+        console.log(user);
+        return user.id;
+    }
+
 
 }

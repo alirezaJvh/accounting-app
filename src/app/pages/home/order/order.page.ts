@@ -13,7 +13,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 })
 
 export class OrderPage {
-    constructor(public modalController: ModalController, private barcodeScanner: BarcodeScanner, private commonService: CommonService) {
+    constructor(public modalController: ModalController,
+                private barcodeScanner: BarcodeScanner,
+                private commonService: CommonService) {
     }
 
     async presentCodeModal() {
