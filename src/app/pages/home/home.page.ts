@@ -58,7 +58,7 @@ export class HomePage {
                     console.log(err);
                     this.commonService.showMessage('خطایی رخ داده است', 'error-msg');
                 }
-            )
+            );
     }
 
     getUserId() {
