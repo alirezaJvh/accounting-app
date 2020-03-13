@@ -23,25 +23,18 @@
             </ion-row>
             <ion-row class="mt-4 px-2 py-3  d-flex flex-column align-items-center">
                 <div class="w-100 py-2 d-flex  product-info-box">
-                    <div style="color:#acacac">محصول :‌</div>
+                    <div style="color:#acacac">  محصول : ‌</div>
                     <div> {{data.product.name}}</div>
                 </div>
 
                 <div class="w-100 py-3 d-flex  product-info-box">
                     <div style="color:#acacac">از : ‌</div>
-                    <div>  {{data.product.reservoir.name}}</div>
+                    <div>  {{data.product.reservoir.name}} </div>
                 </div>
 
-                <div class="w-100 pt-2 pb-3 d-flex  product-info-box">
-                    <div class="mt-1" style="color:#acacac">به :‌</div>
-                    <ion-select [(ngModel)]="toId"
-                                interface="popover"
-                                id="selection">
-                        <ion-select-option *ngFor="let item of reservoirList"
-                                           [value]="item.id">
-                            {{item.name}}
-                        </ion-select-option>
-                    </ion-select>
+                <div class="w-100 py-3 d-flex  product-info-box">
+                    <div style="color:#acacac">به : ‌</div>
+                    <div>  {{commonService.getUser().reservoir.name}} </div>
                 </div>
 
                 <div class="w-100 d-flex flex-row justify-content-between"

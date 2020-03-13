@@ -21,7 +21,7 @@ export class CommonService {
   }
 
   getUser() {
-    return this.user;
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   hasRole(role) {

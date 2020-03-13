@@ -136,7 +136,7 @@ export class ProductModal implements OnInit {
                 id: this.data.product.reservoir.id
             },
             destination: {
-                id: this.toId
+                id: this.destinationReservoir()
             },
             product: {
                 // tslint:disable-next-line:radix
@@ -149,6 +149,11 @@ export class ProductModal implements OnInit {
             // tslint:disable-next-line:radix
         };
         return param;
+    }
+
+    destinationReservoir() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.reservoir.id;
     }
 
     sendRequest() {
@@ -176,19 +181,17 @@ export class ProductModal implements OnInit {
     }
 
     isValid() {
-        if (this.hasDestination()) {
-            if (this.originAndDestinatinoDifferent()) {
-                if (this.isNumberOfRequestLessThanRemainder()) {
+        if (this.originAndDestinatinoDifferent()) {
+            if (this.isNumberOfRequestLessThanRemainder()) {
+                if (this.commonService.getUser().reservoir) {
                     return true;
-                } else {
-                    this.commonService.showMessage('تعداد درخواستی از تعدا موجودی بیشتر است ', 'error-msg');
                 }
-            } else {
-                this.commonService.showMessage('مبدا و مقصد نمیتواند یکی باشد', 'error-msg');
                 return false;
+            } else {
+                this.commonService.showMessage('تعداد درخواستی از تعدا موجودی بیشتر است ', 'error-msg');
             }
         } else {
-            this.commonService.showMessage('لطفا مقصد کالا رو مشخص کنید', 'error-msg');
+            this.commonService.showMessage('مبدا و مقصد نمیتواند یکی باشد', 'error-msg');
             return false;
         }
     }
