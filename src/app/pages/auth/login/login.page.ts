@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
             username: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required)
         });
-        this.commonService.isLogin();
+        // this.commonService.isLogin();
     }
 
     isValid(param) {
