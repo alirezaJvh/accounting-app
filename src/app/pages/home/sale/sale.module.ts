@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
-import {SalePage} from './sale.page';
+import {ProductCodeModal, SalePage} from './sale.page';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SaleRoutingModule} from './sale-routing.module';
+import {ProductInfoPage} from './product-info/product-info.page';
 
 @NgModule({
     imports: [
@@ -14,9 +15,13 @@ import {SaleRoutingModule} from './sale-routing.module';
         SaleRoutingModule
     ],
     declarations: [
-        SalePage
+        SalePage,
+        ProductCodeModal,
+        ProductInfoPage
     ],
-    entryComponents: []
+    entryComponents: [
+        ProductCodeModal
+    ]
 })
 
 export class SaleModule {}
