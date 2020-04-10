@@ -1,0 +1,74 @@
+<ion-content fullscreen>
+    <div class="w-100 h-100 wrapper">
+        <ion-grid class="ion-padding">
+            <ion-row>
+                <div class="back-btn"
+                     routerLink="/home/sale">
+                    <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+                </div>
+                <div class="ml-2  d-flex flex-column">
+                    <div class="title mt-1">
+                        تایید محصول
+                    </div>
+                    <div class="mt-2" style="font-size: 13px">
+                        <!--{{obj.product.name}}-->
+                    </div>
+                </div>
+            </ion-row>
+
+            <ion-row class="mt-4 px-2 py-3  d-flex flex-column align-items-center">
+                <div class="w-100 py-3 d-flex justify-content-between product-info-box">
+                    <div style="color:#acacac">محصول :‌</div>
+                    <div>{{product.name}} </div>
+                </div>
+
+                <div class="w-100 py-3 d-flex justify-content-between product-info-box">
+                    <div style="color:#acacac">قیمت :‌</div>
+                    <div>{{product.price}} </div>
+                </div>
+
+                <div class="w-100 py-3 d-flex justify-content-between product-info-box">
+                    <div style="color:#acacac">سایز :‌</div>
+                    <div> {{size.value}}</div>
+                </div>
+            </ion-row>
+
+            <ion-row class="mt-4 mb-5 d-flex justify-content-between">
+
+                <ion-col class="d-flex justify-content-center">
+                    <ion-button (click)="verification()"
+                                color="success">
+                        <span>تایید</span>
+                    </ion-button>
+                </ion-col>
+
+                <ion-col class="d-flex justify-content-center">
+                    <ion-button (click)="cancel()"
+                                color="danger">
+                        <span>انصراف</span>
+                    </ion-button>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
+    </div>
+</ion-content>
+
+
+
+<ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="music" routerLink="/home/profile">
+        <img src="../../../../../assets/image/avatar%20(1).png" width="21"/>
+    </ion-tab-button>
+
+    <ion-tab-button tab="games" routerLink="/home">
+        <img src="../../../../../assets/image/Group%20946.png" width="22"/>
+    </ion-tab-button>
+
+    <ion-tab-button tab="logout" (click)="commonService.logOut()">
+        <img  src="../../../../assets/image/home/profile/sign_out_option.svg" width="22">
+    </ion-tab-button>
+
+</ion-tab-bar>

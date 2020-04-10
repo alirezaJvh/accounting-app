@@ -110,10 +110,14 @@ export class ProductCodeModal implements OnInit {
                     val => {
                         console.log(val);
                         localStorage.setItem('sale', JSON.stringify(val));
+                        this.loading = false;
                         this.router.navigate(['/home/sale/product-info']);
+                        this.dismissModal();
                     },
                     err => {
                         console.log(err);
+                        this.commonService.showMessage('خطایی رخ داده است', 'error-msg')
+                        this.loading = false;
                     }
                 );
         }
