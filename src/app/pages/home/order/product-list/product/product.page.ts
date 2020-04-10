@@ -29,14 +29,15 @@ export class ProductPage implements OnInit {
 
     getId() {
         this.obj = JSON.parse(localStorage.getItem('product'));
-        console.log(this.obj);
+        // console.log('here')
+        // console.log(this.obj);
     }
 
     getSizes() {
         const param = {
             id: this.obj.product.id
         };
-        console.log(param);
+        // console.log(param);
         this.http.post('http://127.0.0.1:9000/v1/shop/product/sizes', param, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -86,13 +87,15 @@ export class ProductModal implements OnInit {
 
     ngOnInit(): void {
         this.data = this.navaParam.get('data');
+        console.log('data')
+        console.log(this.data)
         this.sizes = this.navaParam.get('sizes');
         this.getReservoirList();
         this.setOrderSizeObj();
     }
 
     setOrderSizeObj() {
-        console.log(this.sizes);
+        // console.log(this.sizes);
         for (const item of this.sizes) {
             this.orderSized.push({
                 id: item.size.id,
@@ -100,7 +103,7 @@ export class ProductModal implements OnInit {
                 size: item.size.value
             });
         }
-        console.log(this.orderSized);
+        // console.log(this.orderSized);
     }
 
     getReservoirList() {
@@ -117,7 +120,7 @@ export class ProductModal implements OnInit {
                 (val) => {
                     this.loading = false;
                     this.reservoirList = val;
-                    console.log(val);
+                    // console.log(val);
 
                 },
                 response => {
@@ -159,7 +162,7 @@ export class ProductModal implements OnInit {
     sendRequest() {
         if (this.isValid()) {
             this.submitLoading = true;
-            console.log(this.orderSized);
+            // console.log(this.orderSized);
             const param = this.prepareData();
             this.http.post('http://127.0.0.1:9000/v1/shop/order/submit', param, {
                 headers: {

@@ -17,7 +17,7 @@ export class ProductListPage implements OnInit {
 
     ngOnInit(): void {
         this.list = JSON.parse(localStorage.getItem('product-list'));
-        console.log(this.list);
+        // console.log(this.list);
     }
 
     getProduct(id) {
@@ -32,7 +32,7 @@ export class ProductListPage implements OnInit {
         const obj = this.getProduct(id);
         localStorage.setItem('product', JSON.stringify(obj));
         this.router.navigate(['/home/order/product-list/product']);
-        console.log(id);
-        console.log(obj)
+        // console.log(id);
+        // console.log(obj)
     }
 }

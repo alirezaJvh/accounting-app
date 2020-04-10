@@ -18,6 +18,11 @@ const routes: Routes = [
         path: 'profile',
         component: ProfilePage
     },
+    {
+        path: 'sale',
+        loadChildren: () => import('./sale/sale.module')
+            .then(m => m.SaleModule)
+    }
 
 ];
 

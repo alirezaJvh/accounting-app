@@ -44,8 +44,8 @@
                                      height="22px"/>
                             </div>
                         </ion-row>
-                        <ion-row style="width: 90%">
-                            <div class="mx-auto ion-text-center pt-3 pb-2 px-2">
+                        <ion-row>
+                            <div class="mx-auto ion-text-center pt-3 pb-2">
                                 <ion-text>
                                     تحویل
                                 </ion-text>
@@ -53,6 +53,29 @@
                         </ion-row>
                     </ion-card>
                 </ion-col>
+            </ion-row>
+
+            <ion-row  class="mx-auto" style="width: 90%">
+                <ion-col>
+                    <ion-card class="ion-padding card margin-left-zero"
+                              (click)="router.navigate(['/home/sale'])">
+                        <ion-row>
+                            <div class="icon-section primary-theme-bg mx-auto d-flex justify-content-center align-items-center">
+                                <img src="../../../assets/image/home/shop.svg"
+                                     width="30px"
+                                     height="30px"/>
+                            </div>
+                        </ion-row>
+                        <ion-row >
+                            <div class="mx-auto ion-text-center pt-3 pb-2 ">
+                                <ion-text>
+                                    فروش
+                                </ion-text>
+                            </div>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+
             </ion-row>
         </ion-grid>
     </div>
