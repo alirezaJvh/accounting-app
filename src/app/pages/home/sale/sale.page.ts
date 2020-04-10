@@ -29,7 +29,7 @@ export class SalePage {
         return await modal.present();
     }
 
-    scanner() {
+    scanProduct() {
         this.barcodeScanner.scan().then(barcodeData => {
             this.sendRequest(barcodeData.text);
         }).catch(err => {
@@ -44,24 +44,18 @@ export class SalePage {
 
     sendRequest(id) {
         this.sannerLoading = true;
-        const param = {
-            id
-        };
-        this.http.post('http://127.0.0.1:9000/v1/shop/product/search', param, {
+        // tslint:disable-next-line:radix
+        const param = parseInt(id);
+        this.http.post('http://127.0.0.1:9000/v1/shop/product/findByCode', param, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
             .subscribe(
                 val => {
-                    localStorage.setItem('product-list', JSON.stringify(val));
-                    const list: any = val;
-                    if (list.length) {
-                        this.router.navigate(['/home/order/product-list']);
-                    } else {
-                        this.commonService.showMessage('محصولی موجود نمیباشد', 'error-msg');
-                    }
+                    localStorage.setItem('sale', JSON.stringify(val));
                     this.sannerLoading = false;
+                    this.router.navigate(['/home/sale/product-info']);
                 },
                 error => {
                     console.log(error);
@@ -103,6 +97,7 @@ export class ProductCodeModal implements OnInit {
 
     sendRequest() {
         if (this.loading) return;
+        // tslint:disable-next-line:radix
         const param = parseInt(this.formGroup.get('code').value);
         if (this.isValid(param)) {
             this.loading = true;
@@ -114,7 +109,8 @@ export class ProductCodeModal implements OnInit {
                 .subscribe(
                     val => {
                         console.log(val);
-                        localStorage.setItem('sale', JSON.parse(val));
+                        localStorage.setItem('sale', JSON.stringify(val));
+                        this.router.navigate(['/home/sale/product-info']);
                     },
                     err => {
                         console.log(err);
