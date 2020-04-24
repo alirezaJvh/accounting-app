@@ -9,7 +9,7 @@ import {CommonService} from '../../../../shared/common/common.service';
     styleUrls: ['./product-info.page.scss']
 })
 
-export class ProductInfoPage implements OnInit{
+export class ProductInfoPage implements OnInit {
     product: object;
     size: object;
     constructor(private router: Router,
@@ -25,7 +25,7 @@ export class ProductInfoPage implements OnInit{
             const obj = JSON.parse(localStorage.getItem('sale'));
             this.product = obj.product;
             this.size = obj.size;
-            console.log(this.product);
+            // console.log(this.product);
         }
     }
 
@@ -35,7 +35,7 @@ export class ProductInfoPage implements OnInit{
     }
 
     verification() {
-        this.router.navigate(['/home/sale/customer']);
+        this.router.navigate(['/home/sale/product-info/customer']);
     }
 
 }

@@ -1,0 +1,83 @@
+
+<ion-header translucent>
+    <ion-toolbar color="success">
+        <ion-title>کد مشتری</ion-title>
+        <ion-buttons slot="end">
+            <ion-button routerLink="/home/sale/product-info">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="top-left-img"></div>
+    <div class="bottom-right-img"></div>
+    <div class="w-100 h-100 wrapper d-flex justify-content-center align-items-center">
+        <div *ngIf="sannerLoading"
+             class="w-100 h-100 d-flex justify-content-center align-items-center">
+            <div >
+                <ion-spinner color="danger"
+                             name="crescent">
+                </ion-spinner>
+            </div>
+        </div>
+        <ion-grid *ngIf="!sannerLoading">
+            <ion-row>
+                <ion-col (click)="openCustomerCodeModal()">
+                    <ion-card class="ion-padding card margin-left-zero">
+                        <ion-row>
+                            <div class="icon-section primary-theme-bg mx-auto d-flex justify-content-center align-items-center">
+                                <img src="../../../../assets/image/home/newspaper%20(1).svg"
+                                     width="20px"
+                                     height="22px">
+                            </div>
+                        </ion-row>
+                        <ion-row style="width: 90%">
+                            <div class="mx-auto ion-text-center pt-3 pb-2 px-2">
+                                <ion-text>
+                                    کد مشتری
+                                </ion-text>
+                            </div>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+
+                <ion-col (click)="scanCustomer()">
+                    <ion-card class="ion-padding card margin-right-zero">
+                        <ion-row>
+                            <div class="icon-section primary-theme-bg mx-auto d-flex justify-content-center align-items-center">
+                                <img src="../../../../assets/image/home/newspaper%20(1).svg"
+                                     width="20px"
+                                     height="22px">
+                            </div>
+                        </ion-row>
+                        <ion-row style="width: 90%">
+                            <div class="mx-auto ion-text-center pt-3 pb-2 px-2">
+                                <ion-text>
+                                    اسکن بارکد
+                                </ion-text>
+                            </div>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>
+
+
+<ion-tab-bar slot="bottom">
+    <ion-tab-button tab="music" routerLink="/home/profile">
+        <img src="../../../../../../assets/image/avatar%20(1).png" width="21"/>
+    </ion-tab-button>
+
+    <ion-tab-button tab="games" routerLink="/home">
+        <img src="../../../../../../assets/image/Group%20946.png" width="22"/>
+    </ion-tab-button>
+
+    <ion-tab-button tab="logout" (click)="commonService.logOut()">
+        <img  src="../../../../assets/image/home/profile/sign_out_option.svg" width="22">
+    </ion-tab-button>
+</ion-tab-bar>

@@ -3,16 +3,16 @@ import {ModalController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {CommonService} from '../../../shared/common/common.service';
+import {CommonService} from '../../../../../shared/common/common.service';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
-    selector: 'sale-page',
-    templateUrl: './sale.page.html',
-    styleUrls: ['./sale.page.scss', '../../../../assets/style/page-style.scss']
+    selector: 'customer-code-page',
+    templateUrl: './customer-code.page.html',
+    styleUrls: ['./customer-code.page.scss', '../../../../../../assets/style/page-style.scss']
 })
 
-export class SalePage {
+export class CustomerCodePage {
     constructor(public modalController: ModalController,
                 private barcodeScanner: BarcodeScanner,
                 private commonService: CommonService,
@@ -22,14 +22,14 @@ export class SalePage {
 
     sannerLoading = false;
 
-    async openCodeModal() {
+    async openCustomerCodeModal() {
         const modal = await this.modalController.create({
-            component: ProductCodeModal
+            component: CustomerCodeModal
         });
         return await modal.present();
     }
 
-    scanProduct() {
+    scanCustomer() {
         this.barcodeScanner.scan().then(barcodeData => {
             this.sendRequest(barcodeData.text);
         }).catch(err => {
@@ -37,25 +37,22 @@ export class SalePage {
         });
     }
 
-    getUsername() {
-        const user = JSON.parse(localStorage.getItem('user'));
-        return user.username;
-    }
-
     sendRequest(id) {
         this.sannerLoading = true;
         // tslint:disable-next-line:radix
-        const param = parseInt(id);
-        this.http.post('http://127.0.0.1:9000/v1/shop/product/findByCode', param, {
+        const param = {
+            id
+        };
+        this.http.post('http://127.0.0.1:9000/v1/shop/customer/list', param, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
             .subscribe(
                 val => {
-                    localStorage.setItem('sale', JSON.stringify(val));
                     this.sannerLoading = false;
-                    this.router.navigate(['/home/sale/product-info']);
+                    localStorage.setItem('customer', JSON.stringify(val));
+                    this.router.navigate(['/home/sale/product-info/customer/final']);
                 },
                 err => {
                     console.log(err);
@@ -71,12 +68,12 @@ export class SalePage {
 }
 
 @Component({
-    selector: 'code-modal-page',
-    templateUrl: './product-code-modal/product-code-modal.html',
-    styleUrls: ['./product-code-modal/product-code-modal.scss']
+    selector: 'customer-code-module',
+    templateUrl: './customer-code-modal/customer-code-modal.html',
+    styleUrls: ['./customer-code-modal/customer-code-modal.scss']
 })
 
-export class ProductCodeModal implements OnInit {
+export class CustomerCodeModal implements OnInit {
 
     constructor(public modalCntr: ModalController,
                 private http: HttpClient,
@@ -102,21 +99,22 @@ export class ProductCodeModal implements OnInit {
     sendRequest() {
         if (this.loading) return;
         // tslint:disable-next-line:radix
-        const param = parseInt(this.formGroup.get('code').value);
+        const param = {
+            id: this.formGroup.get('code').value
+        }
         if (this.isValid(param)) {
             this.loading = true;
-            this.http.post('http://127.0.0.1:9000/v1/shop/product/findByCode', param, {
+            this.http.post('http://127.0.0.1:9000/v1/shop/customer/list', param, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             })
                 .subscribe(
                     val => {
-                        console.log(val);
-                        localStorage.setItem('sale', JSON.stringify(val));
                         this.loading = false;
-                        this.router.navigate(['/home/sale/product-info']);
+                        localStorage.setItem('customer', JSON.stringify(val));
                         this.dismissModal();
+                        this.router.navigate(['/home/sale/product-info/customer/final']);
                     },
                     err => {
                         console.log(err);

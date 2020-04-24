@@ -1,0 +1,41 @@
+<ion-header translucent>
+    <ion-toolbar color="success">
+        <ion-title>وارد کردن کد مشتری</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismissModal()">
+                <span>بستن</span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+    <div class="w-100 h-100 login-wrapper d-flex justify-content-center align-items-center">
+        <ion-grid>
+            <ion-row class="ion-padding">
+                <form [formGroup]="formGroup" class="w-100">
+                    <div class="d-flex justify-content-start custom-input py-1">
+                        <img src="../../../../../assets/image/auth/person-icon.png"
+                             class="mx-1">
+                        <input class="pl-2"
+                               required
+                               formControlName="code"
+                               placeholder="کد مشتری">
+                    </div>
+                </form>
+            </ion-row>
+            <ion-row>
+                <div class="py-2 w-100 px-3">
+                    <ion-button type="submit"
+                                expand="block"
+                                (click)="sendRequest()"
+                                color="success">
+                        <span *ngIf="!loading">تایید</span>
+                        <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
+                    </ion-button>
+
+                </div>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content>

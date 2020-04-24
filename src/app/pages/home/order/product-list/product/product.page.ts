@@ -178,6 +178,8 @@ export class ProductModal implements OnInit {
                     },
                     err => {
                         console.log(err);
+                        this.submitLoading = false;
+                        this.commonService.showMessage('خطایی رخ داده است', 'error-msg');
                     });
         }
 

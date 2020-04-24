@@ -5,6 +5,8 @@ import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SaleRoutingModule} from './sale-routing.module';
 import {ProductInfoPage} from './product-info/product-info.page';
+import {CustomerCodeModal, CustomerCodePage} from './product-info/customer-code/customer-code.page';
+import {FinalSalePage} from './product-info/customer-code/final-sale/final-sale.page';
 
 @NgModule({
     imports: [
@@ -17,10 +19,14 @@ import {ProductInfoPage} from './product-info/product-info.page';
     declarations: [
         SalePage,
         ProductCodeModal,
-        ProductInfoPage
+        ProductInfoPage,
+        CustomerCodePage,
+        CustomerCodeModal,
+        FinalSalePage
     ],
     entryComponents: [
-        ProductCodeModal
+        ProductCodeModal,
+        CustomerCodeModal
     ]
 })
 
