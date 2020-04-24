@@ -14,7 +14,8 @@ export class FinalSalePage implements OnInit {
     size: any;
     customer: any;
     obj: any;
-    amount = 1;
+    amount = '1';
+    loading = false;
 
     constructor(private router: Router,
                 private http: HttpClient,
@@ -49,6 +50,7 @@ export class FinalSalePage implements OnInit {
     }
 
     saveSale() {
+        this.loading = true;
         const param = this.prepareData();
         this.http.post('http://127.0.0.1:9000/v1/shop/sales/save', param, {
             headers: {
@@ -59,12 +61,18 @@ export class FinalSalePage implements OnInit {
                 val => {
                     console.log(val);
                     this.commonService.showMessage('خرید با موفقیت ثبت شد', 'success-msg');
+                    this.loading = false;
                     this.router.navigate(['/home']);
                 },
                 err => {
                     console.log(err);
-                    this.commonService.showMessage('حطایی رخ داده است', 'error-msg');
-                    this.router.navigate(['/home']);
+                    this.loading = false
+                    if (err.status === 422) {
+                        this.commonService.showMessage('تعداد کالای مورد نیاز در انبار موجود نمیباشد', 'error-msg');
+                    } else {
+                        this.commonService.showMessage('حطایی رخ داده است', 'error-msg');
+                        this.router.navigate(['/home']);
+                    }
                 }
             );
     }
