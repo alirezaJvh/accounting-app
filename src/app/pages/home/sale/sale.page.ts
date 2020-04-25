@@ -102,7 +102,8 @@ export class ProductCodeModal implements OnInit {
     sendRequest() {
         if (this.loading) return;
         // tslint:disable-next-line:radix
-        const param = parseInt(this.formGroup.get('code').value);
+        let param = this.commonService.toEnglishDigits(this.formGroup.get('code').value);
+        param = parseInt(param);
         if (this.isValid(param)) {
             this.loading = true;
             this.http.post('http://127.0.0.1:9000/v1/shop/product/findByCode', param, {

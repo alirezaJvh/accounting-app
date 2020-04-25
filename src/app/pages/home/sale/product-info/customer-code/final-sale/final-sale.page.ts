@@ -84,7 +84,7 @@ export class FinalSalePage implements OnInit {
             },
             productCode: this.obj.code,
             status: 'UNPAID',
-            amount: this.amount
+            amount: this.commonService.toEnglishDigits(this.amount)
         };
     }
 }
