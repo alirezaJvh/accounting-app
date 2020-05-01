@@ -5,7 +5,7 @@ import {OrderRoutingModule} from './order-routing.module';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProductListPage} from './product-list/product-list.page';
-import {ProductModal, ProductPage} from './product-list/product/product.page';
+import {ImageModal, ProductModal, ProductPage} from './product-list/product/product.page';
 // import {HeaderComonent} from '../../../component/header/header.comonent';
 
 @NgModule({
@@ -22,11 +22,13 @@ import {ProductModal, ProductPage} from './product-list/product/product.page';
         ProductListPage,
         ProductPage,
         ProductModal,
+        ImageModal
 
     ],
     entryComponents: [
         CodeModalPage,
-        ProductModal
+        ProductModal,
+        ImageModal
     ]
 })
 

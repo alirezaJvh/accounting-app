@@ -61,6 +61,41 @@ export class ProductPage implements OnInit {
         });
         return await modal.present();
     }
+
+    async openImageDialog(src) {
+        const modal = await this.modalController.create({
+            component: ImageModal,
+            componentProps: {
+                data: src
+            }
+        });
+        return await modal.present();
+    }
+}
+
+@Component({
+    selector: 'image-modal',
+    templateUrl: './image-modal/image-modal.html',
+    styleUrls: ['./image-modal/image-modal.scss']
+})
+
+export class ImageModal implements OnInit {
+    constructor(public modalCntr: ModalController,
+                private http: HttpClient,
+                private navaParam: NavParams) {
+    }
+
+    data: any;
+
+    ngOnInit(): void {
+        this.data = this.navaParam.get('data');
+        console.log('data');
+        console.log(this.data);
+    }
+
+    dismissModal() {
+        this.modalCntr.dismiss();
+    }
 }
 
 @Component({
@@ -87,8 +122,8 @@ export class ProductModal implements OnInit {
 
     ngOnInit(): void {
         this.data = this.navaParam.get('data');
-        console.log('data')
-        console.log(this.data)
+        console.log('data');
+        console.log(this.data);
         this.sizes = this.navaParam.get('sizes');
         this.getReservoirList();
         this.setOrderSizeObj();
