@@ -168,6 +168,17 @@ export class ProductModal implements OnInit {
         return user.id;
     }
 
+    setSize() {
+        let obj = [];
+        for (const item of this.orderSized) {
+            if (item.value !== '' && item.value !== '0') {
+                obj.push(item);
+            }
+        }
+        console.log(obj);
+        return JSON.stringify(obj);
+    }
+
     prepareData() {
         const param = {
             source: {
@@ -183,7 +194,7 @@ export class ProductModal implements OnInit {
             submitter: {
                 id: this.getUserId()
             },
-            orders: JSON.stringify(this.orderSized)
+            orders: this.setSize()
             // tslint:disable-next-line:radix
         };
         return param;
@@ -213,8 +224,12 @@ export class ProductModal implements OnInit {
                     },
                     err => {
                         console.log(err);
+                        if (err.status === 422) {
+                            this.commonService.showMessage(err.error, 'error-msg');
+                        } else {
+                            this.commonService.showMessage('خطایی رخ داده است', 'error-msg');
+                        }
                         this.submitLoading = false;
-                        this.commonService.showMessage('خطایی رخ داده است', 'error-msg');
                     });
         }
 
